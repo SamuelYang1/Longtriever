@@ -1,0 +1,20 @@
+python -m torch.distributed.launch --nproc_per_node 8 run.py \
+        --max_corpus_length 512 \
+        --max_corpus_sent_num 5 \
+        --encoder_mlm_probability 0.3 \
+        --decoder_mlm_probability 0.5 \
+        --model_type longtriever_pretrain \
+        --model_name_or_path bert-base-uncased \
+        --output_dir ./output_Longtriever_pretrain \
+        --do_train True \
+        --num_train_epochs 8 \
+        --save_steps 20000 \
+        --per_device_train_batch_size 5 \
+        --dataloader_drop_last True \
+        --fp16 True \
+        --learning_rate 1e-4 \
+        --warmup_ratio 0.1 \
+        --weight_decay 0.01 \
+        --overwrite_output_dir True \
+        --dataloader_num_workers 12 \
+        --disable_tqdm True

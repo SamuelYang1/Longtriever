@@ -1,0 +1,21 @@
+python -m torch.distributed.launch --nproc_per_node 8 run.py \
+        --query_file $QueryFilePath$ \
+        --corpus_file $CorpusFilePath$ \
+        --qrels_file $QRelsFilePath$ \
+        --max_query_length 512 \
+        --max_corpus_length 512 \
+        --max_corpus_sent_num 4 \
+        --model_type longtriever \
+        --model_name_or_path output_Longtriever_pretrain \
+        --output_dir ./output_Longtriever_finetune \
+        --do_train True \
+        --num_train_epochs 10 \
+        --save_strategy epoch \
+        --logging_strategy epoch \
+        --per_device_train_batch_size 6 \
+        --dataloader_drop_last True \
+        --fp16 True \
+        --learning_rate 1e-5 \
+        --overwrite_output_dir True \
+        --dataloader_num_workers 12 \
+        --disable_tqdm True
